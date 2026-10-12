@@ -1,3 +1,9 @@
+// 1. Setup and Global Object in Node.js
+
+// Install: Node.js and VS Code
+
+// ----------------------------------------------
+
 // console.log("Hello, Node.js!");
 
 // ----------------------------------------------
