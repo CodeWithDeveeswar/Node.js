@@ -1,0 +1,19 @@
+{
+  "name": "08---npm-and-dependencies-in-node",
+  "version": "1.1.1",
+  "description": "Node.js Backend",
+  "license": "ISC",
+  "author": "Node.js",
+  "type": "commonjs",
+  "main": "Server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "lodash": "^4.18.1"
+  }
+}
