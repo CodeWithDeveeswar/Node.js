@@ -1,0 +1,16 @@
+{
+  "name": "10---middleware-in-express-js-app",
+  "version": "1.1.1",
+  "description": "Middleware in Express JS App",
+  "license": "ISC",
+  "author": "Express.js",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "morgan": "^1.12.1"
+  }
+}
