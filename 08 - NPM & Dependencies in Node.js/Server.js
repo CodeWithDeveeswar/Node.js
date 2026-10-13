@@ -13,6 +13,9 @@
 
 // ---------------------- Terminal 2 ----------------------
 
+// Navigate to Project Folder
+// Cmd: cd "D:\Node.js\08 - NPM & Dependencies in Node.js"
+
 // Initialize Node.js Project and Create package.json
 // Cmd: npm init
 
