@@ -1,0 +1,15 @@
+{
+  "name": "09---express-js-app",
+  "version": "1.1.1",
+  "description": "Express JS App",
+  "license": "ISC",
+  "author": "Express.js",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
