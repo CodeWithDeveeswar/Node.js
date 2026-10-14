@@ -97,7 +97,7 @@ app.get("/api/products/:id", (req, res) => {
 
 // Post Request
 
-app.use(express.json()); // Middleware
+app.use(express.json()); // Middleware to parse incoming JSON data
 
 app.post("/api/users", (req, res) => {
   console.log(req.body);
