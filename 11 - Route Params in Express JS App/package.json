@@ -2,7 +2,7 @@
   "name": "11---route-params-in-express-js-app",
   "version": "1.0.0",
   "description": "Route Params in Express JS App",
-  "main": "App.mjs",
+  "main": "index.mjs",
   "directories": {
     "doc": "docs"
   },
