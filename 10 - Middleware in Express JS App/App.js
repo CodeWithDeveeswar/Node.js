@@ -10,6 +10,8 @@ const app = exp();
 
 app.listen(3000);
 
+// Custom middleware to log request details
+
 // app.use((req, res, next) => {
 //   console.log("Request Received");
 //   console.log(req.host);
@@ -18,10 +20,14 @@ app.listen(3000);
 //   next();
 // });
 
+// First custom middleware
+
 // app.use((req, res, next) => {
 //   console.log("Middleware 1");
 //   next();
 // });
+
+// Morgan middleware to log HTTP requests
 
 app.use(morgan("dev"));
 
@@ -36,6 +42,8 @@ app.get("/join", (req, res) => {
 app.get("/about", (req, res) => {
   res.sendFile("./docs/about.html", { root: __dirname });
 });
+
+// Second custom middleware
 
 // app.use((req, res, next) => {
 //   console.log("Middleware 2");
