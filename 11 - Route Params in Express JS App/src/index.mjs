@@ -1,3 +1,5 @@
+// 11. Route Params in Express JS App
+
 import express from "express";
 
 const app = express();
@@ -19,6 +21,8 @@ app.get("/", (req, res) => {
 app.get("/api/users", (req, res) => {
   res.send(users);
 });
+
+// Route Params
 
 app.get("/api/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
