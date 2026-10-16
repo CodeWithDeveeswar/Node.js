@@ -95,9 +95,11 @@ app.get("/api/products/:id", (req, res) => {
   return res.status(404).send({ msg: "User Not Found" });
 });
 
-// Post Request
+// Middleware to parse incoming JSON data
 
-app.use(express.json()); // Middleware to parse incoming JSON data
+app.use(express.json());
+
+// Post Request
 
 app.post("/api/users", (req, res) => {
   console.log(req.body);
