@@ -1,7 +1,5 @@
 // 16. getById (middleware) in Express JS App
 
-// Extension: Thunder Client
-
 import express from "express";
 
 const app = express();
@@ -141,7 +139,7 @@ app.post("/api/users", (req, res) => {
   return res.status(201).send(newUser);
 });
 
-// Put Request
+// Put Request (complete update)
 
 app.put("/api/users/:id", getUserIndexById, (req, res) => {
   const userIndex = req.userIndex;
@@ -184,5 +182,3 @@ app.listen(PORT, () => {
 // localhost:3000/api/users?filter=user_name&value=de
 
 // localhost:3000/api/products?filter=product_name&value=25
-
-// Put - update (complete update)
