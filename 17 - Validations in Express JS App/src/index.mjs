@@ -2,6 +2,8 @@
 
 // Extension: Thunder Client
 
+// npm install express-validator
+
 import express from "express";
 import { createUserValidationSchema } from "./utils/validationSchemas.mjs";
 import { validationResult, matchedData, checkSchema } from "express-validator";
