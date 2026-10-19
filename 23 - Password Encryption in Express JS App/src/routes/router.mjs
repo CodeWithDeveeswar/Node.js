@@ -1,0 +1,13 @@
+import { Router } from "express";
+import usersRouter from "../routes/users.mjs";
+import productsRouter from "../routes/products.mjs";
+
+const router = Router();
+
+// Middleware to handle user routes
+router.use(usersRouter);
+
+// Middleware to handle product routes
+router.use(productsRouter);
+
+export default router;
