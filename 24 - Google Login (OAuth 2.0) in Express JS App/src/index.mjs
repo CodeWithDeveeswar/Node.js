@@ -38,7 +38,7 @@ mongoose
 app.use(
   session({
     // Secret key used to sign the session ID cookie
-    secret: "Keep Secrete",
+    secret: process.env.SESSION_SECRET,
 
     // Do not save new sessions until they are modified
     saveUninitialized: false,
@@ -95,7 +95,7 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      // Google OAuth credentials from the .env file
+      // Google OAuth credentials
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 
