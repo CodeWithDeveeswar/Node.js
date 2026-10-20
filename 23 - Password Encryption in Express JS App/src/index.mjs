@@ -68,8 +68,11 @@ passport.use(
           return done(null, false, { message: "Invalid Username" });
         }
 
-        // Compare the provided password with the stored hashed password
-        if (comparePassword(password, user.password)) {
+        // Compare the entered password with the stored hashed password
+        const isPasswordValid = comparePassword(password, user.password);
+
+        // Check if the password is correct
+        if (!isPasswordValid) {
           return done(null, false, { message: "Incorrect Password" });
         }
 
