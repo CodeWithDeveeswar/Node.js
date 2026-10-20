@@ -14,6 +14,7 @@ import mongoose from "mongoose";
 import { User } from "./mongoose/schema/user.mjs";
 import { comparePassword } from "../src/utils/helper.mjs";
 import dotenv from "dotenv";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 // Load environment variables from .env
 dotenv.config();
@@ -90,6 +91,47 @@ passport.use(
   ),
 );
 
+// Configure Google OAuth Strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      // Google OAuth credentials from the .env file
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+
+      // URL where Google redirects after authentication
+      callbackURL: "/auth/google/cb",
+    },
+    async function (accessToken, refreshToken, profile, done) {
+      try {
+        // Find an existing user using their Google ID
+        const user = await User.findOne({ googleId: profile.id });
+
+        // If the user already exists, authenticate them
+        if (user) {
+          return done(null, user);
+        }
+
+        // Get the user's email from their Google profile
+        const email = profile.emails?.[0]?.value;
+
+        // Create a new user if they do not exist
+        const newUSer = await User.create({
+          user_name: profile.displayName,
+          googleId: profile.id,
+          email,
+        });
+
+        // Return the newly created user
+        return done(null, newUSer);
+      } catch (err) {
+        // Handle database or authentication errors
+        return done(err, null);
+      }
+    },
+  ),
+);
+
 // Store the user ID in the session after successful authentication
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -161,6 +203,24 @@ app.post("/login", (req, res, next) => {
     });
   })(req, res, next);
 });
+
+// Route to initiate Google OAuth authentication
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+);
+
+// Callback route after Google authentication
+app.get(
+  "/auth/google/cb",
+  passport.authenticate("google", {
+    failureRedirect: "/",
+  }),
+  (req, res) => {
+    // Send a success response with the authenticated user
+    res.send({ msg: "Google Login Successful", user: req.user });
+  },
+);
 
 // Start the Express server
 app.listen(PORT, () => {
