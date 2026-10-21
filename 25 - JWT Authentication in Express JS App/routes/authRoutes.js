@@ -16,9 +16,9 @@ authRoutes.post("/signup", async (req, res) => {
     });
 
     const savedUser = await user.save();
-    res.send(savedUser);
+    res.status(201).send(savedUser);
   } catch (err) {
-    res.send(err);
+    res.status(500).send(err);
   }
 });
 
@@ -27,7 +27,7 @@ authRoutes.post("/signin", async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
 
     if (!existingUser) {
-      return res.send("Email is Invalid");
+      return res.status(404).send("Email is Invalid");
     } else {
       const checkUser = await hashValidator(
         req.body.password,
@@ -35,21 +35,23 @@ authRoutes.post("/signin", async (req, res) => {
       );
 
       if (!checkUser) {
-        res.send("Password is Invalid");
+        res.status(401).send("Password is Invalid");
       } else {
         const token = await tokenGenerator(existingUser.email);
         res.cookie("jwt", token);
-        // res.send(token);
-        res.send("Login Successful");
+        res.status(200).send({
+          message: "Login Successful",
+          token: token,
+        });
       }
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
 authRoutes.get("/protected", authVerify, (req, res) => {
-  res.send("I am protected route");
+  res.status(200).send("I am protected route");
 });
 
 module.exports = authRoutes;
