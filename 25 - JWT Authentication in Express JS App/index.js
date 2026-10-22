@@ -7,7 +7,10 @@ const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
-mongoose.connect(process.env.DB_URL, console.log("DB Connected...!"));
+mongoose
+  .connect(process.env.DB_URL)
+  .then(() => console.log("DB Connected...!"))
+  .catch((err) => console.log(`DB Connection Failed: ${err}`));
 
 app.use(cookieParser());
 app.use(express.json());
