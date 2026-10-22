@@ -1,3 +1,8 @@
+// 25. JWT Authentication in Express JS App
+
+// npm install express nodemon mongoose dotenv
+// npm install bcryptjs jsonwebtoken cookie-parser
+
 const express = require("express");
 const app = express();
 const authRoutes = require("./routes/authRoutes");
