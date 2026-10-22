@@ -8,7 +8,7 @@ module.exports = async function (req, res, next) {
     if (valid) {
       next();
     } else {
-      res.status(401).send("Access Denied");
+      res.status(401).send({ msg: "Access Denied" });
     }
   } catch (err) {
     res.status(500).send(err);

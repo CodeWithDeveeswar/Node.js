@@ -27,7 +27,7 @@ authRoutes.post("/signin", async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
 
     if (!existingUser) {
-      return res.status(404).send("Email is Invalid");
+      return res.status(404).send({ msg: "Email is Invalid" });
     } else {
       const checkUser = await hashValidator(
         req.body.password,
@@ -35,14 +35,11 @@ authRoutes.post("/signin", async (req, res) => {
       );
 
       if (!checkUser) {
-        res.status(401).send("Password is Invalid");
+        res.status(401).send({ msg: "Password is Invalid" });
       } else {
         const token = await tokenGenerator(existingUser.email);
         res.cookie("jwt", token);
-        res.status(200).send({
-          message: "Login Successful",
-          token: token,
-        });
+        res.status(200).send({ msg: "Login Successful", token: token });
       }
     }
   } catch (error) {
@@ -51,7 +48,7 @@ authRoutes.post("/signin", async (req, res) => {
 });
 
 authRoutes.get("/protected", authVerify, (req, res) => {
-  res.status(200).send("I am protected route");
+  res.status(200).send({ msg: "I am protected route" });
 });
 
 module.exports = authRoutes;
